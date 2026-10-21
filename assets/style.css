@@ -60,3 +60,44 @@ h1,h2{text-wrap:balance}p{text-wrap:pretty}
 @media(max-height:730px){.scroll-depth-enabled .voyage-stage{position:relative;height:auto;min-height:0;padding:45px 0}.scroll-depth-enabled .scroll-voyage{height:auto}.scroll-depth-enabled .voyage-photo,.scroll-depth-enabled .voyage-backdrop,.scroll-depth-enabled .voyage-progress span{animation-range:entry 10% exit 90%}}
 @media(prefers-reduced-motion:reduce){.scroll-depth-enabled .scroll-voyage{height:auto}.scroll-depth-enabled .voyage-stage{position:relative;height:auto;min-height:0}.scroll-invitation{display:none}.voyage-photo,.hero-main,.inset-photo{will-change:auto!important}}
 @media print{.scroll-depth-enabled .scroll-voyage{height:auto}.scroll-depth-enabled .voyage-stage{position:relative;height:auto}.voyage-photo{box-shadow:none}.scroll-invitation{display:none}}
+/* Desktop and laptop composition: readable copy, aligned columns, height-aware scenes. */
+@media screen and (min-width:1024px){
+ .wrap{max-width:1480px;width:calc(100% - clamp(64px,8vw,120px))}
+ .topbar{font-size:11px}.topbar .wrap{min-height:32px}
+ .masthead{min-height:92px}nav a{font-size:12px;padding:14px 0}
+ .header-cta{font-size:12px;padding:12px 20px}
+ .hero{max-width:1600px;grid-template-columns:1fr 1.08fr;min-height:0}
+ .hero-copy{padding:52px 40px 32px clamp(32px,4vw,60px)}
+ .hero h1{font-size:clamp(70px,5.4vw,96px);line-height:1.04;letter-spacing:-2.6px;margin-bottom:24px}
+ .hero .eyebrow{font-size:9px;letter-spacing:1.6px}
+ .hero-copy>p:not(.eyebrow){font-size:14px;line-height:1.85;max-width:470px}
+ .hero-copy .desktop{display:none}.hero-buttons{gap:26px}.hero-buttons .button{font-size:13px;padding:15px 22px}.plain-link{font-size:12px}
+ .hero-note{font-size:8px;letter-spacing:1.3px;padding-top:25px}
+ .hero-visual{min-height:clamp(520px,calc(100svh - 218px),680px);margin:24px 28px 28px 0}
+ .inset-photo{width:clamp(220px,19vw,300px);height:clamp(175px,15vw,235px);left:-42px;bottom:30px}
+ .photo-label{font-size:9px}.inset-photo span{font-size:8px}.sea-stamp{right:30px;bottom:45px}
+ .story{gap:clamp(50px,7vw,110px)}.story p,.feature-split p:not(.eyebrow),.topic-card p,.timeline p,.place-card p,.visa-card p,.notice p,.section-description,.sea-layout p:not(.eyebrow){font-size:15px}
+ .story p,.feature-split p:not(.eyebrow){max-width:64ch}
+ .eyebrow{font-size:10px}.topic-card{padding:36px;min-height:340px}.topic-card h3{font-size:34px}.card-number{font-size:10px}
+ .text-link{font-size:13px}.section-heading>.text-link{font-size:13px;white-space:nowrap}
+ .destination{min-height:440px}.destination h3{font-size:38px}.destination span{font-size:10px}.destination p{font-size:12px}
+ .news-list>a{grid-template-columns:190px minmax(0,1fr) 190px 25px}.news-list h3{font-size:29px}.news-type{font-size:10px}.news-list a>span:nth-last-child(2){font-size:12px}
+ .closing p:not(.eyebrow){font-size:15px}.footer-grid p,.footer-grid>div>a:not(.brand){font-size:12px}.footer-grid h3{font-size:12px}.footer-grid small,.footer-bottom{font-size:11px}
+ .page-intro{padding-top:68px}.lead{font-size:19px;max-width:760px}.feature-image{height:460px}.place-card img{height:340px}
+ .faq summary{font-size:18px}.faq details p,.checklist label,.steps{font-size:15px}.article-feature article>p:not(.lead):not(.eyebrow){font-size:16px}
+ .scroll-depth-enabled .voyage-stage{min-height:0;height:100svh}.voyage-layout{grid-template-columns:.85fr 1.15fr;gap:65px;min-height:0}
+ .voyage-copy h2{font-size:clamp(48px,3.8vw,68px)}.voyage-copy>p:not(.eyebrow){font-size:15px;max-width:390px}
+ .voyage-scene{height:clamp(450px,61svh,620px)}.voyage-pakistan{height:68%;top:10%}.voyage-oman{height:66%;top:22%}.voyage-nizwa{height:46%}
+ .voyage-coordinate{font-size:9px}.voyage-photo figcaption{font-size:clamp(22px,1.7vw,29px)}.voyage-backdrop{font-size:clamp(100px,9vw,150px)}
+}
+@media screen and (min-width:1024px) and (max-height:800px){
+ .masthead{min-height:80px}nav a{padding:12px 0}.hero-copy{padding-top:32px;padding-bottom:22px}.hero h1{font-size:clamp(65px,5.1vw,82px);margin-bottom:18px}
+ .hero .eyebrow{margin-bottom:17px}.hero-copy>p:not(.eyebrow){font-size:13px;margin-bottom:14px}.hero-note{padding-top:17px}
+ .hero-visual{min-height:470px;margin-top:20px;margin-bottom:20px}.hero-buttons .button{padding:12px 18px}
+ .scroll-depth-enabled .scroll-voyage{height:220svh}.scroll-depth-enabled .voyage-stage{position:sticky;top:0;height:100svh;min-height:0;padding:25px 0}
+ .voyage-layout{min-height:0;gap:50px}.voyage-scene{height:clamp(350px,65svh,500px)}.voyage-copy h2{font-size:clamp(43px,3.6vw,57px);margin-bottom:20px}
+ .voyage-copy>p:not(.eyebrow){font-size:14px}.voyage-copy .eyebrow{margin-bottom:17px}.voyage-progress{margin-top:22px}.scroll-invitation{margin:20px 0}
+ .scroll-depth-enabled .voyage-photo,.scroll-depth-enabled .voyage-backdrop,.scroll-depth-enabled .voyage-progress span{animation-range:contain 0% contain 100%}
+}
+@media screen and (min-width:1800px){.hero-copy{padding-top:65px}.hero-buttons{margin-top:18px}.section{padding-top:100px;padding-bottom:100px}.hero-visual{margin-right:34px}.story+.section{padding-top:0}}
+@media screen and (min-width:1024px) and (prefers-reduced-motion:reduce){.scroll-depth-enabled .scroll-voyage{height:auto}.scroll-depth-enabled .voyage-stage{position:relative;height:auto;padding:60px 0}}

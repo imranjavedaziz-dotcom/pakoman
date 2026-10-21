@@ -23,10 +23,17 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 Shared styles and behaviour live in `assets/style.css` and `assets/site.js`. Navigation and footer are plain semantic HTML on every page so they remain available without JavaScript. Edit their copies together when changing the menu. Fonts have local fallbacks. No analytics, cookies, form collection or browser storage are used.
 
-Network policy blocked official and image hosts during development. External photos have original, labelled local SVG illustration fallbacks; the fallback illustrations are not factual depictions of a named landmark. Before public release, verify photo identity and licence/attribution using the original publisher, download approved optimized images into `assets/`, and update the image URLs and alt text. Do not treat the current photo endpoints as verified. The illustrative local mark is not a government emblem.
+Five distinct, visually inspected Wikimedia Commons photographs are stored in `assets/photos/`, so photography works offline. File descriptions, author and licence metadata are retained in `credits.json` and displayed on `news.html#sources`. Images were resized and JPEG-optimized; page layouts may crop them. Respect the individual CC BY-SA 4.0, CC0 or public-domain terms when reusing photos. Original SVG illustrations remain automatic failure fallbacks. The illustrative mark is not a government emblem.
+
+The homepage includes a CSS/SVG animated maritime route, dhow, waves and port pulses. A pause/resume control and `prefers-reduced-motion` support are provided. Section reveals use IntersectionObserver and keep content visible when JavaScript is absent.
 
 The supplied 14 October 2026 announcement could not be independently verified. It is explicitly marked pending on the relations/news pages. Verify the primary release, exact instrument scope and entry into force before changing that status. Do not extend official-passport arrangements to ordinary passports. Travel guidance directs users to official portals rather than publishing unverified eligibility, fees or processing promises. Proposed friendship programs are concepts, not active events.
 
 Official resource links also require a pre-publication availability check. See the Sources & Editorial Notes section on `news.html`.
 
 Use the existing checkout in cloud tasks; a new worktree is unnecessary.
+
+
+## Review
+
+Download the repository as a ZIP from GitHub, extract it, and open `index.html` for an interactive local review. GitHub’s source-code view does not render the website. The cloud onboarding UI does not expose a live localhost preview. Screenshot previews can be supplied in chat.

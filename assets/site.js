@@ -27,3 +27,22 @@ const checklist = [...document.querySelectorAll('.checklist input')];
 checklist.forEach(box => box.addEventListener('change', () => { document.querySelector('.check-status').textContent = `${checklist.filter(item => item.checked).length} of ${checklist.length} preparations checked`; }));
 document.querySelector('.print-button')?.addEventListener('click', () => window.print());
 document.querySelector('.back-top').addEventListener('click', () => { window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); });
+
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const motionButton = document.querySelector('.motion-toggle');
+motionButton?.addEventListener('click', () => {
+  const paused = document.body.classList.toggle('motion-paused');
+  motionButton.setAttribute('aria-pressed', String(paused));
+  motionButton.innerHTML = paused ? 'Resume animation' : 'Pause animation';
+});
+if ('IntersectionObserver' in window && !reducedMotion.matches) {
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+  }), { threshold: 0.08 });
+  document.querySelectorAll('.story, .topic-card, .section-heading, .place-card').forEach(element => {
+    element.classList.add('reveal-pending'); observer.observe(element);
+  });
+  reducedMotion.addEventListener('change', event => {
+    if (event.matches) { observer.disconnect(); document.querySelectorAll('.reveal-pending').forEach(element => element.classList.add('is-visible')); }
+  });
+}

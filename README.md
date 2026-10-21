@@ -37,3 +37,7 @@ Use the existing checkout in cloud tasks; a new worktree is unnecessary.
 ## Review
 
 Download the repository as a ZIP from GitHub, extract it, and open `index.html` for an interactive local review. GitHub’s source-code view does not render the website. The cloud onboarding UI does not expose a live localhost preview. Screenshot previews can be supplied in chat.
+
+## Scroll-driven depth
+
+The homepage includes a sticky photographic chapter with CSS perspective and reversible scroll-linked transforms. Native scrolling is preserved. One requestAnimationFrame per scroll frame updates layer positions and the dhow route; there is no continuous JavaScript rendering loop. The motion control pauses these updates. Reduced-motion mode removes the sticky scroll extension and leaves a static composition. Short viewports use the ordinary document flow.

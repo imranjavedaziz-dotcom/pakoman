@@ -47,42 +47,17 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
   });
 }
 
-// A single scheduled frame maps native scroll position to reversible transforms.
-const voyage = document.querySelector('.scroll-voyage');
-if (voyage) {
-  const hero = document.querySelector('.hero');
-  const sea = document.querySelector('.sea-story');
-  let scrollFrame = 0;
-  const clamp = value => Math.max(0, Math.min(1, value));
-  function renderScrollDepth() {
-    scrollFrame = 0;
-    if (reducedMotion.matches || document.body.classList.contains('motion-paused')) return;
-    const viewport = window.innerHeight;
-    const rect = voyage.getBoundingClientRect();
-    const distance = rect.height - viewport;
-    const progress = distance > 50 ? clamp(-rect.top / distance) : clamp((viewport - rect.top) / (viewport + rect.height));
-    voyage.style.setProperty('--voyage', progress.toFixed(4));
-    const heroProgress = clamp(-hero.getBoundingClientRect().top / hero.offsetHeight);
-    hero.style.setProperty('--hero-shift', `${(heroProgress * 35).toFixed(2)}px`);
-    hero.style.setProperty('--inset-shift', `${(-heroProgress * 55).toFixed(2)}px`);
-    hero.style.setProperty('--inset-angle', `${(-heroProgress * 4).toFixed(2)}deg`);
-    const seaRect = sea.getBoundingClientRect();
-    const seaProgress = clamp((viewport * .8 - seaRect.top) / (viewport * .5 + seaRect.height));
-    sea.style.setProperty('--sea-progress', `${(seaProgress * 100).toFixed(2)}%`);
-    sea.style.setProperty('--route-offset', (-seaProgress * 180).toFixed(2));
-  }
-  function scheduleScrollDepth() {
-    if (!scrollFrame && !reducedMotion.matches && !document.body.classList.contains('motion-paused')) scrollFrame = requestAnimationFrame(renderScrollDepth);
-  }
-  function setScrollMode() {
-    document.body.classList.toggle('scroll-depth-enabled', !reducedMotion.matches);
-    scheduleScrollDepth();
-  }
-  window.addEventListener('scroll', scheduleScrollDepth, { passive: true });
-  window.addEventListener('resize', scheduleScrollDepth, { passive: true });
-  window.addEventListener('pageshow', scheduleScrollDepth);
-  window.addEventListener('load', scheduleScrollDepth, { once: true });
-  reducedMotion.addEventListener('change', setScrollMode);
-  motionButton?.addEventListener('click', scheduleScrollDepth);
-  setScrollMode();
+// Native view timelines own scroll-driven motion; JavaScript only controls state.
+const nativeScrollMotion = CSS.supports('animation-timeline', 'view()');
+function updateMotionMode() {
+  document.body.classList.toggle('scroll-depth-enabled', nativeScrollMotion && !reducedMotion.matches);
+}
+reducedMotion.addEventListener('change', updateMotionMode);
+updateMotionMode();
+// Suspend decorative loops and promote just the visible photographic layers.
+if ('IntersectionObserver' in window) {
+  const visibility = new IntersectionObserver(entries => entries.forEach(entry => {
+    entry.target.classList.toggle('motion-in-view', entry.isIntersecting);
+  }), { rootMargin: '80px' });
+  document.querySelectorAll('.scroll-voyage, .sea-story, .hero').forEach(scene => visibility.observe(scene));
 }

@@ -40,4 +40,14 @@ Download the repository as a ZIP from GitHub, extract it, and open `index.html` 
 
 ## Scroll-driven depth
 
-The homepage includes a sticky photographic chapter with CSS perspective and reversible scroll-linked transforms. Native scrolling is preserved. One requestAnimationFrame per scroll frame updates layer positions and the dhow route; there is no continuous JavaScript rendering loop. The motion control pauses these updates. Reduced-motion mode removes the sticky scroll extension and leaves a static composition. Short viewports use the ordinary document flow.
+The homepage includes a sticky photographic chapter with CSS perspective and reversible scroll-linked transforms. Native scrolling is preserved. Native CSS View Timelines drive three photographic layers, the hero depth and the dhow route. There are no JavaScript scroll listeners, per-frame layout measurements or inherited animated variables. The motion control pauses the animations. Browsers without view-timeline support receive a static composition. IntersectionObserver suspends offscreen decorative loops and limits layer promotion to visible scenes. Reduced-motion mode removes the sticky scroll extension and leaves a static composition. Short viewports use the ordinary document flow.
+
+## UI Skills
+
+Installed and ran `ui-skills@0.2.4` using npm exec (equivalent to npx). The remote `start` and `list --category motion` commands could not reach ui-skills.com, so the package-bundled motion guidance was used. Its MIT-licensed skill and licence are retained in `.agents/skills/fixing-motion-performance/` for future development. This is development guidance, not an application dependency; no React, Tailwind or build step was added.
+
+To invoke the CLI again in this cloud machine:
+
+```sh
+npm exec --cache /tmp/pakoman-npm-cache --yes --package ui-skills@0.2.4 -- ui-skills
+```

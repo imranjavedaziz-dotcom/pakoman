@@ -51,3 +51,7 @@ To invoke the CLI again in this cloud machine:
 ```sh
 npm exec --cache /tmp/pakoman-npm-cache --yes --package ui-skills@0.2.4 -- ui-skills
 ```
+
+## PakOman editorial additions
+
+The home page explains PakOman’s purpose and provides maritime/craft stories plus four visitor pathways. Heritage includes hospitality, craft and coastal-memory essays. People & Progress includes student, newcomer, professional and cultural-organiser resource guides. These are editorial guides; no personal testimonials, live events, membership schemes or government endorsements are implied.
